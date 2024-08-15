@@ -152,23 +152,4 @@ task.spawn(function()
     end);
 end);
 
-function resolve_player_effect()
-    local character = local_player.Character;
-    if not character then
-        return;
-    end
-    if getgenv().self_effect_Enabled then
-        local effect = game:GetObjects("rbxassetid://11959460915")[1];
-        effect.Name = "venox_fx";
-        if character.PrimaryPart:FindFirstChild("venox_fx") then
-            return;
-        end
-        effect.Parent = character.PrimaryPart;
-    elseif character.PrimaryPart:FindFirstChild("venox_fx") then
-        character.PrimaryPart['venox_fx']:Destroy();
-    end
-end
-
-local_player.CharacterAdded:Connect(resolve_player_effect);
-task.defer(resolve_player_effect);
 task.defer(resolve_parry_Remote);
